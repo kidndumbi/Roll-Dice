@@ -8,7 +8,13 @@ import { RollDiceService } from '../../roll-dice.service';
   template: `
   <div style="background-color:#292b2c; border-radius:10px">
   <div class="row"  *ngFor="let d of dice$ | async" >
-  <div class="col-lg-6"><app-dice [dicesize] = "diceSize" [diceNumber]="d.side"></app-dice></div>
+  <div class="col-lg-6">
+  <app-dice [dicesize] ="diceSize" 
+      [diceNumber]="d.side" 
+      [boxHeight]="boxHeight" 
+      [boxWidth]="boxWidth">
+  </app-dice>
+  </div>
   <div class="col-lg-6 frequentcy"><span >{{ d.count }}</span></div>
   </div>
   </div>
@@ -32,12 +38,14 @@ export class DiceFrequencyComponent implements OnInit {
 
   dice$: Observable<Dice[]>;
   diceSize = '2em';
+  boxHeight = "70px";
+  boxWidth = "70px";
 
   constructor(private diceService: RollDiceService) {
 
-     this.dice$ = diceService.getDice();
+    this.dice$ = diceService.getDice();
 
-   }
+  }
 
   ngOnInit() {
   }

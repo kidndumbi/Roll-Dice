@@ -14,7 +14,11 @@ import { RollDiceService } from '../roll-dice.service';
   <div class="col-lg-10">
   <button (click)="rollDice()" class="btn btn-lg btn-success">Roll Dice</button>
   <div class="row">
-    <div class="col-lg-2" *ngFor="let d of dice$ | async" ><app-dice [selected]="d.success" [dicesize]= "diceSize"  [diceNumber]="d.side"></app-dice></div>
+    <div class="col-lg-2" *ngFor="let d of dice$ | async" >
+    <app-dice [selected]="d.success" 
+    [dicesize]= "diceSize"  
+    [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth" ></app-dice>
+    </div>
   </div>
   </div>
   </div>
@@ -26,6 +30,8 @@ export class RollDiceComponent implements OnInit {
 
   dice$: Observable<Dice[]>;
   diceSize = '3em';
+  boxHeight = "100px";
+  boxWidth = "100px";
 
   constructor(private diceservice: RollDiceService) {
     this.dice$ = this.diceservice.getDice(); 

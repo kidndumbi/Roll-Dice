@@ -3,14 +3,14 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-dice',
   template: `
-    <div id="box" [ngClass]="{'selectedDice': selected}">
+    <div id="box" [style.height]="boxHeight" [style.width]="boxWidth"
+    [ngClass]="{'selectedDice': selected}">
     <span [style.font-size]= "dicesize" class="dice dice-{{diceNumber}}" title="Dice {{ diceNumber }}"></span>
     </div>
   `,
   styles: [`
   #box{
-    height: 100px;
-    width: 100px;
+
     font-size: 24px;
     font-style: oblique;
     color: #FFF;
@@ -35,6 +35,8 @@ export class DiceComponent implements OnInit {
   @Input() diceNumber:number;
   @Input() selected:boolean;
   @Input() dicesize:string;
+  @Input() boxHeight:string;
+  @Input() boxWidth:string;
 
   constructor() { }
 
