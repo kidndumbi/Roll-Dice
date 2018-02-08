@@ -43,7 +43,9 @@ export class RollDiceComponent implements OnInit {
 
   rollDice() {
 
-    this.diceservice.rollDice();
+    this.diceservice.rollDice().then(data => {
+      console.log('Dice roll done',data);
+    });
     
     
   }
