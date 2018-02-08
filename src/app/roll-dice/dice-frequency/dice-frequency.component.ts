@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dice } from '../model/DiceModel';
 import { Observable } from 'rxjs/Observable';
 import { RollDiceService } from '../../roll-dice.service';
+import 'rxjs/add/observable/merge';
 
 @Component({
   selector: 'app-dice-frequency',
@@ -37,6 +38,9 @@ import { RollDiceService } from '../../roll-dice.service';
 export class DiceFrequencyComponent implements OnInit {
 
   dice$: Observable<Dice[]>;
+  dice2$: Observable<Dice[]>;
+
+  allDice$: Observable<Dice[]>;
   diceSize = '2em';
   boxHeight = "70px";
   boxWidth = "70px";
@@ -44,6 +48,14 @@ export class DiceFrequencyComponent implements OnInit {
   constructor(private diceService: RollDiceService) {
 
     this.dice$ = diceService.getDice();
+
+    this.dice2$ = diceService.getDice2();
+
+    Observable.merge(this.dice$, this.dice2$).subscribe(d => {
+          
+      console.log('meregd');
+
+    });
 
   }
 

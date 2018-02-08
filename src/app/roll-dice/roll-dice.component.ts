@@ -20,6 +20,13 @@ import { RollDiceService } from '../roll-dice.service';
     [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth" ></app-dice>
     </div>
   </div>
+  <div class="row">
+  <div class="col-lg-2" *ngFor="let d of dice2$ | async" >
+  <app-dice [selected]="d.success" 
+  [dicesize]= "diceSize"  
+  [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth" ></app-dice>
+  </div>
+</div>
   </div>
   </div>
 
@@ -29,12 +36,14 @@ import { RollDiceService } from '../roll-dice.service';
 export class RollDiceComponent implements OnInit {
 
   dice$: Observable<Dice[]>;
+  dice2$: Observable<Dice[]>;
   diceSize = '3em';
   boxHeight = "100px";
   boxWidth = "100px";
 
   constructor(private diceservice: RollDiceService) {
     this.dice$ = this.diceservice.getDice(); 
+    this.dice2$ = this.diceservice.getDice2(); 
   }
 
   ngOnInit() {
