@@ -32,6 +32,7 @@ export class DiceComponent implements OnInit {
   @Input() dicesize:string;
   @Input() boxHeight:string;
   @Input() boxWidth:string;
+  @Input() bgColor:string;
 
   constructor() { }
 

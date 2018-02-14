@@ -7,12 +7,24 @@
     <button (click)="rollDice()" class="btn btn-lg btn-success">Roll Dice</button>
     <div class="row">
       <div class="col-lg-2" *ngFor="let d of dice$ | async">
-        <app-dice [selected]="d.success" [dicesize]="diceSize" [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth"></app-dice>
+        <app-dice
+         [bgColor]="'green'" 
+        [selected]="d.success" 
+        [dicesize]="diceSize" 
+        [diceNumber]="d.side" 
+        [boxHeight]="boxHeight" 
+        [boxWidth]="boxWidth"></app-dice>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-2" *ngFor="let d of dice2$ | async">
-        <app-dice [selected]="d.success" [dicesize]="diceSize" [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth"></app-dice>
+        <app-dice 
+        [bgColor]="'purple'" 
+        [selected]="d.success" 
+        [dicesize]="diceSize" 
+        [diceNumber]="d.side" 
+        [boxHeight]="boxHeight" 
+        [boxWidth]="boxWidth"></app-dice>
       </div>
     </div>
   </div>

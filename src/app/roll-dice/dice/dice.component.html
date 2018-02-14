@@ -1,3 +1,4 @@
-<div id="box" [style.height]="boxHeight" [style.width]="boxWidth" [ngClass]="{'selectedDice': selected}">
+<div id="box" [style.height]="boxHeight" [style.width]="boxWidth" 
+[ngStyle]="{'background-color':selected ? bgColor : 'white' }">
   <span [style.font-size]="dicesize" class="dice dice-{{diceNumber}}" title="Dice {{ diceNumber }}"></span>
 </div>
