@@ -2,12 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dice',
-  template: `
-    <div id="box" [style.height]="boxHeight" [style.width]="boxWidth"
-    [ngClass]="{'selectedDice': selected}">
-    <span [style.font-size]= "dicesize" class="dice dice-{{diceNumber}}" title="Dice {{ diceNumber }}"></span>
-    </div>
-  `,
+  templateUrl: './dice.component.html',
   styles: [`
   #box{
 

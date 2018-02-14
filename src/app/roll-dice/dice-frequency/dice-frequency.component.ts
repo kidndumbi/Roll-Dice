@@ -7,21 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-dice-frequency',
-  template: `
-  <div style="background-color:#292b2c; border-radius:10px">
-  <div class="row"  *ngFor="let d of dice$ | async " >
-  <div class="col-lg-6">
-  <app-dice [dicesize] ="diceSize" 
-      [diceNumber]="d.side" 
-      [boxHeight]="boxHeight" 
-      [boxWidth]="boxWidth">
-  </app-dice>
-  </div>
-  <div class="col-lg-6 frequentcy"><span >{{ d.count }}</span></div>
-  </div>
-  </div>
-
-  `,
+  templateUrl:'./dice-frequency.component.html',
   styles: [`
   
   .frequentcy {

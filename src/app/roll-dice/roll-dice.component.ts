@@ -5,32 +5,7 @@ import { RollDiceService } from '../roll-dice.service';
 
 @Component({
   selector: 'app-roll-dice',
-  template: `
-  <div class="row">
-  <div class="col-lg-2" style="margin-top:20px;">
-  <app-dice-frequency></app-dice-frequency>
-  
-  </div>
-  <div class="col-lg-10">
-  <button (click)="rollDice()" class="btn btn-lg btn-success">Roll Dice</button>
-  <div class="row">
-    <div class="col-lg-2" *ngFor="let d of dice$ | async" >
-    <app-dice [selected]="d.success" 
-    [dicesize]= "diceSize"  
-    [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth" ></app-dice>
-    </div>
-  </div>
-  <div class="row">
-  <div class="col-lg-2" *ngFor="let d of dice2$ | async" >
-  <app-dice [selected]="d.success" 
-  [dicesize]= "diceSize"  
-  [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth" ></app-dice>
-  </div>
-</div>
-  </div>
-  </div>
-
-  `,
+  templateUrl: "./roll-dice.component.html",
   styles: []
 })
 export class RollDiceComponent implements OnInit {
