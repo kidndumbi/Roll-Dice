@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Dice } from '../model/DiceModel';
 import { Observable } from 'rxjs/Observable';
 import { RollDiceService } from '../../roll-dice.service';
@@ -30,6 +30,7 @@ export class DiceFrequencyComponent implements OnInit {
   diceFrequency: Dice[];
 
   allDice$: Observable<Dice[]>;
+  @Input() bgColor:string;
   diceSize = '2em';
   boxHeight = "70px";
   boxWidth = "70px";
