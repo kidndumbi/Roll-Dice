@@ -24,8 +24,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DiceFrequencyComponent implements OnInit {
 
-  dice$: Observable<Dice[]>;
-  dice2$: Observable<Dice[]>;
+  @Input() dice$: Observable<Dice[]>;
+  //dice2$: Observable<Dice[]>;
 
   diceFrequency: Dice[];
 
@@ -36,17 +36,8 @@ export class DiceFrequencyComponent implements OnInit {
   boxWidth = "70px";
 
   constructor(private diceService: RollDiceService) {
-    this.dice$ = this.diceService.getDice();
-    //this.initializeDice();
+    //this.dice$ = this.diceService.getDice();
 
-    // this.diceService.getDice2().subscribe(d => {
-    //   console.log(d);
-    //   this.updateFrequency(d);
-    // });
-    // this.diceService.getDice().subscribe(d => {
-    //   console.log(d);
-    //   this.updateFrequency(d);
-    // });
   }
 
   ngOnInit() {
@@ -68,9 +59,6 @@ export class DiceFrequencyComponent implements OnInit {
                 return d.side === dice.side;
             });
 
-            console.log(getDice);
-
-            //d.count += getDice.count;;
       });
   }
 
