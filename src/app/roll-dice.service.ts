@@ -3,14 +3,18 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Dice } from './roll-dice/model/DiceModel';
 import { Promise } from 'q';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class RollDiceService {
 
-  dice$: Observable<Dice[]>;
-  dice2$: Observable<Dice[]>;
-  private observer: Observer<Dice[]>;
-  private observer2: Observer<Dice[]>;
+  //dice$: Observable<Dice[]>;
+  //dice2$: Observable<Dice[]>;
+  //private observer: Observer<Dice[]>;
+ // private observer2: Observer<Dice[]>;
+
+  private subject = new Subject();
+  diceNotify$ = this.subject.asObservable();
 
   private dice: Dice[] = [];
   private dice2: Dice[] = [];
@@ -18,25 +22,32 @@ export class RollDiceService {
   constructor() {
 
     this.initializeDice();
-    this.dice$ = new Observable(obs => {
-      this.observer = obs;
-      this.observer.next(this.dice);
-    });
+    this.emitDice();
+    
 
-    this.dice2$ = new Observable(obs => {
-      this.observer2 = obs;
-      this.observer2.next(this.dice2);
-    });
+    // this.dice$ = new Observable(obs => {
+    //   this.observer = obs;
+    //   this.observer.next(this.dice);
+    // });
+
+    // this.dice2$ = new Observable(obs => {
+    //   this.observer2 = obs;
+    //   this.observer2.next(this.dice2);
+    // });
 
   }
 
-  getDice(): Observable<Dice[]> {
-    return this.dice$;
+  emitDice(){
+    this.subject.next(this.dice);
   }
 
-  getDice2(): Observable<Dice[]> {
-    return this.dice2$;
-  }
+  // getDice(): Observable<Dice[]> {
+  //   return this.dice$;
+  // }
+
+  // getDice2(): Observable<Dice[]> {
+  //   return this.dice2$;
+  // }
 
   private initializeDice() {
     this.dice = [];
@@ -71,8 +82,8 @@ export class RollDiceService {
           let randomeNumber: number = this.randomIntFromInterval(1, 6)
           let randomeNumber2: number = this.randomIntFromInterval(1, 6)
           this.setSuccessRoll(randomeNumber, randomeNumber2);
-          this.observer.next(this.dice);
-          this.observer2.next(this.dice2);
+          //this.observer.next(this.dice);
+          //this.observer2.next(this.dice2);
 
           if(counter === 20){
           clearInterval(inter);
