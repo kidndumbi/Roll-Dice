@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-lg-2" style="margin-top:20px;">
-    <app-dice-frequency [dice$]="dice$" [bgColor]="'green'"></app-dice-frequency>
+    <app-dice-frequency [dice]="dice" [bgColor]="'green'"></app-dice-frequency>
 
   </div>
   <div class="col-lg-8">
     <button (click)="rollDice()" class="btn btn-lg btn-success">Roll Dice</button>
     <div class="row">
-      <div class="col-lg-2" *ngFor="let d of dice$ | async">
+      <div class="col-lg-2" *ngFor="let d of dice ">
         <app-dice [bgColor]="'green'" [selected]="d.success" [dicesize]="diceSize" [diceNumber]="d.side" [boxHeight]="boxHeight"
           [boxWidth]="boxWidth">
         </app-dice>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-2" *ngFor="let d of dice2$ | async">
+      <div class="col-lg-2" *ngFor="let d of dice2 ">
         <app-dice [bgColor]="'purple'" [selected]="d.success" [dicesize]="diceSize" [diceNumber]="d.side" [boxHeight]="boxHeight"
           [boxWidth]="boxWidth">
         </app-dice>
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="col-lg-2" style="margin-top:20px;">
-    <app-dice-frequency [dice$]="dice2$"  [bgColor]="'purple'"></app-dice-frequency>
+    <app-dice-frequency [dice]="dice2"  [bgColor]="'purple'"></app-dice-frequency>
 
   </div>
 </div>

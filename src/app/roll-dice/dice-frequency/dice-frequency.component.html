@@ -1,5 +1,5 @@
 <div style="background-color:#292b2c; border-radius:10px" [style.backgroundColor]="bgColor">
-  <div class="row" *ngFor="let d of dice$ | async ">
+  <div class="row" *ngFor="let d of dice ">
     <div class="col-lg-6">
       <app-dice [dicesize]="diceSize" [diceNumber]="d.side" [boxHeight]="boxHeight" [boxWidth]="boxWidth">
       </app-dice>

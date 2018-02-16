@@ -10,28 +10,30 @@ import { RollDiceService } from '../roll-dice.service';
 })
 export class RollDiceComponent implements OnInit {
 
-  dice$: Observable<Dice[]>;
-  dice2$: Observable<Dice[]>;
+  dice: Dice[];
+  dice2: Dice[];
   diceSize = '3em';
   boxHeight = "100px";
   boxWidth = "100px";
 
   constructor(private diceservice: RollDiceService) {
-    this.dice$ = this.diceservice.getDice(); 
-    this.dice2$ = this.diceservice.getDice2(); 
+
   }
 
   ngOnInit() {
+    this.diceservice.subject.subscribe(d => {
+         this.dice = d;
+    });
+    this.diceservice.subject2.subscribe(d => {
+      this.dice2 = d;
+ });
     
   }
 
   rollDice() {
-
     this.diceservice.rollDice().then(data => {
       console.log('Dice roll done',data);
     });
-    
-    
   }
 
 }

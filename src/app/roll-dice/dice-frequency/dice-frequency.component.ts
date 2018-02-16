@@ -7,7 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-dice-frequency',
-  templateUrl:'./dice-frequency.component.html',
+  templateUrl: './dice-frequency.component.html',
   styles: [`
   
   .frequentcy {
@@ -24,13 +24,13 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DiceFrequencyComponent implements OnInit {
 
-  @Input() dice$: Observable<Dice[]>;
+  @Input() dice: Dice[];
   //dice2$: Observable<Dice[]>;
 
   diceFrequency: Dice[];
 
   allDice$: Observable<Dice[]>;
-  @Input() bgColor:string;
+  @Input() bgColor: string;
   diceSize = '2em';
   boxHeight = "70px";
   boxWidth = "70px";
@@ -41,7 +41,7 @@ export class DiceFrequencyComponent implements OnInit {
   }
 
   ngOnInit() {
- 
+
   }
 
   private initializeDice() {
@@ -52,14 +52,14 @@ export class DiceFrequencyComponent implements OnInit {
     }
   }
 
-  updateFrequency(dice:Dice[]){
-     
-      this.diceFrequency.forEach(d => {
-            let getDice = dice.find(dice => {
-                return d.side === dice.side;
-            });
+  updateFrequency(dice: Dice[]) {
 
+    this.diceFrequency.forEach(d => {
+      let getDice = dice.find(dice => {
+        return d.side === dice.side;
       });
+
+    });
   }
 
 }
