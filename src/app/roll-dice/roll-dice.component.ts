@@ -3,6 +3,7 @@ import { Dice } from './model/DiceModel';
 import { Observable } from 'rxjs/Observable';
 import { RollDiceService } from '../roll-dice.service';
 import { MatSnackBar } from '@angular/material';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-roll-dice',
@@ -11,8 +12,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class RollDiceComponent implements OnInit {
 
-  dice: Dice[];
-  dice2: Dice[];
+  dice$: Observable<Dice[]>;
+  dice2$: Observable<Dice[]>;
   diceSize = '3em';
   boxHeight = "100px";
   boxWidth = "100px";
@@ -22,12 +23,10 @@ export class RollDiceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.diceservice.subject.subscribe(d => {
-      this.dice = d;
-    });
-    this.diceservice.subject2.subscribe(d => {
-      this.dice2 = d;
-    });
+
+    this.dice$ = this.diceservice.subject;
+
+    this.dice2$ = this.diceservice.subject2;
 
   }
 

@@ -14,7 +14,7 @@ export class RollDiceService {
 
   public subject: BehaviorSubject<Dice[]>;
   public subject2: BehaviorSubject<Dice[]>;
-
+  dice1$: Observable<Dice[]>;
   constructor() {
 
     this.initializeDice();

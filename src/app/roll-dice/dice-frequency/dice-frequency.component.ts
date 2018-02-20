@@ -24,8 +24,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DiceFrequencyComponent implements OnInit {
 
-  @Input() dice: Dice[];
-  //dice2$: Observable<Dice[]>;
+  @Input() dice:Observable<Dice[]>;
 
   diceFrequency: Dice[];
 
@@ -36,8 +35,7 @@ export class DiceFrequencyComponent implements OnInit {
   boxWidth = "70px";
 
   constructor(private diceService: RollDiceService) {
-    //this.dice$ = this.diceService.getDice();
-
+    
   }
 
   ngOnInit() {
