@@ -1,25 +1,49 @@
+import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Dice } from './roll-dice/model/DiceModel';
 import { Promise } from 'q';
-import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/observable/zip';
+import 'rxjs/add/operator/do';
+
 
 @Injectable()
 export class RollDiceService {
 
   private dice: Dice[] = [];
   private dice2: Dice[] = [];
+  private combine: Dice[] = [];
 
   public subject: BehaviorSubject<Dice[]>;
   public subject2: BehaviorSubject<Dice[]>;
-  dice1$: Observable<Dice[]>;
+  public combo$;
   constructor() {
 
     this.initializeDice();
     this.subject = new BehaviorSubject(this.dice);
     this.subject2 = new BehaviorSubject(this.dice2);
+    this.combo$ = Observable.zip(this.subject, this.subject2).map(d => {
+
+      let dice1 = d[0];
+      let dice2 = d[1];
+
+      dice1.forEach((d, index) => {
+        if (d.success === true) {
+          this.combine[index].count += 1;
+        }
+      });
+
+      dice2.forEach((d, index) => {
+        if (d.success === true) {
+          this.combine[index].count += 1;
+        }
+      });
+
+      return this.combine;
+
+    });
 
   }
 
@@ -35,6 +59,7 @@ export class RollDiceService {
     for (let i = 1; i != 7; i++) {
       this.dice.push({ side: i, success: false, count: 0 });
       this.dice2.push({ side: i, success: false, count: 0 });
+      this.combine.push({ side: i, success: false, count: 0 })
     }
   }
 
@@ -66,6 +91,7 @@ export class RollDiceService {
         if (counter === 20) {
           clearInterval(inter);
           this.setSuccessCount(randomeNumber, randomeNumber2);
+          this.emitDice();
           resolve(true)
         }
 
